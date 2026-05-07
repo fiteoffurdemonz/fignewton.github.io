@@ -7,13 +7,29 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: #111;
       height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+      background: #111;
+    }
+    #bg {
+      position: fixed;
+      inset: 0;
+      color: #2a2a2a;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.4;
+      word-break: break-all;
+      white-space: pre-wrap;
+      padding: 8px;
+      z-index: 0;
+      user-select: none;
     }
     img {
+      position: relative;
+      z-index: 1;
       max-width: 100%;
       max-height: 100vh;
       object-fit: contain;
@@ -21,6 +37,7 @@
   </style>
 </head>
 <body>
+  <div id="bg"></div>
   <img id="photo" alt="fig is a dog ig">
 
   <script>
@@ -53,6 +70,20 @@
 
     const random = Math.floor(Math.random() * images.length);
     document.getElementById("photo").src = images[random];
+
+    const faces = ["U•ᴥ•U", "^..^", "=^.^=", "U•ᴥ•U", "(◕ᴥ◕)"];
+    const bg = document.getElementById("bg");
+    const cols = Math.ceil(window.innerWidth / 8);
+    const rows = Math.ceil(window.innerHeight / 18);
+    let text = "";
+    for (let r = 0; r < rows; r++) {
+      let line = "";
+      while (line.length < cols) {
+        line += faces[Math.floor(Math.random() * faces.length)] + "  ";
+      }
+      text += line + "\n";
+    }
+    bg.textContent = text;
   </script>
 </body>
 </html>
