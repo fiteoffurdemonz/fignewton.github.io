@@ -3,27 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>fig is a dog</title>
+  <title>fig is a dog ig</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #111; font-family: sans-serif; }
-    .gallery {
-      columns: 3 280px;
-      gap: 12px;
-      padding: 12px;
+    body {
+      background: #111;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .gallery img {
-      width: 100%;
-      margin-bottom: 12px;
-      border-radius: 6px;
-      display: block;
-      transition: opacity 0.3s;
+    img {
+      max-width: 100%;
+      max-height: 100vh;
+      object-fit: contain;
     }
-    .gallery img:hover { opacity: 0.85; }
   </style>
 </head>
 <body>
-  <div class="gallery" id="gallery"></div>
+  <img id="photo" alt="fig is a dog ig">
 
   <script>
     const images = [
@@ -53,18 +51,8 @@
       "images/image24.JPG",
     ];
 
-    for (let i = images.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [images[i], images[j]] = [images[j], images[i]];
-    }
-
-    const gallery = document.getElementById("gallery");
-    images.forEach(src => {
-      const img = document.createElement("img");
-      img.src = src;
-      img.loading = "lazy";
-      gallery.appendChild(img);
-    });
+    const random = Math.floor(Math.random() * images.length);
+    document.getElementById("photo").src = images[random];
   </script>
 </body>
 </html>
